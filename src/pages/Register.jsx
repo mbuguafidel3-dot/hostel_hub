@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { UserPlus, User, Mail, Lock, Briefcase, Loader2 } from 'lucide-react';
-import "../styles/auth.css";
+import { UserPlus, User, Mail, Lock, Briefcase, Loader2, Hash } from 'lucide-react';
+import '../styles/auth.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
     password: '',
-    role: 'student'
+    role: 'student',
+    student_number: ''
   });
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,7 +22,14 @@ const Register = () => {
     setIsSubmitting(true);
     setError('');
     
-    const result = await register(formData.fullname, formData.email, formData.password, formData.role);
+    // We'll need to update the register call to include student_number if it's a student
+    const result = await register(
+      formData.fullname, 
+      formData.email, 
+      formData.password, 
+      formData.role,
+      formData.role === 'student' ? formData.student_number : null
+    );
     if (result.success) {
       navigate('/login');
     } else {
@@ -35,11 +43,11 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-card">
-        <div className="register-header">
-          <div className="register-logo">
-            <UserPlus size={32} color="#6366f1" />
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <div className="auth-logo">
+            <UserPlus size={32} color="var(--primary)" />
           </div>
           <h1>Create Account</h1>
           <p>Join the hostel booking system</p>
@@ -47,7 +55,7 @@ const Register = () => {
         
         {error && <div className="error-message">{error}</div>}
         
-        <form onSubmit={handleSubmit} className="register-form">
+        <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
             <label htmlFor="fullname">Full Name</label>
             <div className="input-with-icon">
@@ -55,6 +63,7 @@ const Register = () => {
               <input
                 id="fullname"
                 type="text"
+                className="auth-input"
                 placeholder="Enter your full name"
                 value={formData.fullname}
                 onChange={handleChange}
@@ -70,6 +79,7 @@ const Register = () => {
               <input
                 id="email"
                 type="email"
+                className="auth-input"
                 placeholder="Enter your email"
                 value={formData.email}
                 onChange={handleChange}
@@ -85,6 +95,7 @@ const Register = () => {
               <input
                 id="password"
                 type="password"
+                className="auth-input"
                 placeholder="Secure password"
                 value={formData.password}
                 onChange={handleChange}
@@ -99,6 +110,7 @@ const Register = () => {
               <Briefcase size={18} className="input-icon" />
               <select
                 id="role"
+                className="auth-input"
                 value={formData.role}
                 onChange={handleChange}
                 required
@@ -108,20 +120,36 @@ const Register = () => {
               </select>
             </div>
           </div>
+
+          {formData.role === 'student' && (
+            <div className="form-group">
+              <label htmlFor="student_number">Student Number</label>
+              <div className="input-with-icon">
+                <Hash size={18} className="input-icon" />
+                <input
+                  id="student_number"
+                  type="text"
+                  className="auth-input"
+                  placeholder="Enter student ID"
+                  value={formData.student_number}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+          )}
           
-          <button type="submit" className="register-button" disabled={isSubmitting}>
+          <button type="submit" className="auth-button" disabled={isSubmitting}>
             {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : 'Create Account'}
           </button>
         </form>
         
-        <div className="register-footer">
+        <div className="auth-footer">
           Already have an account? <Link to="/login">Login here</Link>
         </div>
       </div>
-      
-  
     </div>
   );
 };
 
-export default Register
+export default Register;

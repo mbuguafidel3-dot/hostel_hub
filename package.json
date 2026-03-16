@@ -1,5 +1,5 @@
 {
-  "name": "hostel_system",
+  "name": "fide_proj",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,13 +12,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@hono/node-server": "^1.19.9",
+    "@hono/node-server": "^1.19.10",
     "axios": "^1.13.6",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.6.2",
     "concurrently": "^9.2.1",
     "dotenv": "^17.3.1",
-    "hono": "^4.12.3",
+    "hono": "^4.12.4",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.576.0",
     "react": "^19.2.0",

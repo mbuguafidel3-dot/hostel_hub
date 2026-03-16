@@ -12,7 +12,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 // Register
 auth.post('/register', async (c) => {
   try {
-    const { fullname, password, email, role } = await c.req.json();
+    const { fullname, password, email, role, student_number } = await c.req.json();
 
     if (!fullname || !password || !email || !role) {
       console.warn('[Register] Missing required fields:', { fullname: !!fullname, email: !!email, role: !!role, password: !!password });
@@ -29,15 +29,21 @@ auth.post('/register', async (c) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const info = db.prepare(
-      'INSERT INTO users (fullname, password, email, role_id) VALUES (?, ?, ?, ?)'
-    ).run(fullname, hashedPassword, email, roleRow.id);
+      'INSERT INTO users (fullname, password, email, role_id, student_number) VALUES (?, ?, ?, ?, ?)'
+    ).run(fullname, hashedPassword, email, roleRow.id, student_number || null);
 
-    console.log(`[Register] User created: ${email} (${role})`);
+    console.log(`[Register] User created: ${email} (${role}) ${student_number ? '[' + student_number + ']' : ''}`);
     return c.json({ message: 'User registered successfully', userId: info.lastInsertRowid }, 201);
   } catch (err) {
-    if (err.message.includes('UNIQUE constraint failed') && err.message.includes('email')) {
-      console.warn(`[Register] Email already exists: ${err.message}`);
-      return c.json({ error: 'Email already exists' }, 400);
+    if (err.message.includes('UNIQUE constraint failed')) {
+      if (err.message.includes('email')) {
+        console.warn(`[Register] Email already exists: ${email}`);
+        return c.json({ error: 'Email already exists' }, 400);
+      }
+      if (err.message.includes('student_number')) {
+        console.warn(`[Register] Student number already exists: ${student_number}`);
+        return c.json({ error: 'Student number already registered' }, 400);
+      }
     }
     console.error('[Register] Internal Server Error:', err);
     return c.json({ error: 'Internal server error' }, 500);

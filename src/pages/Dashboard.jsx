@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import useDashboardData from "../hooks/useDashboardData";
 import ManagerView from "../components/ManagerView";
-// import StudentView from "../components/StudentView";
+import StudentView from "../components/StudentView";
 import "../styles/dashboard.css";
 import Navbar from "../components/Navbar";
 
@@ -46,15 +46,14 @@ const Dashboard = () => {
             onUpdate={refresh}
           />
         ) : (
-          // <StudentView
-          //   user={user}
-          //   hostels={hostels}
-          //   bookings={bookings}
-          //   viewings={viewings}
-          //   history={history}
-          //   onUpdate={refresh}
-          // />
-          null
+          <StudentView
+            user={user}
+            hostels={hostels}
+            bookings={bookings}
+            viewings={viewings}
+            history={history}
+            onUpdate={refresh}
+          />
         )}
       </main>
     </div>

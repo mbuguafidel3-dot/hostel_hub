@@ -3,7 +3,7 @@ import { Plus, Building2, MapPin } from 'lucide-react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/api';
 import HostelCard from './HostelCard';
-// import BookingList from './BookingList';
+import BookingList from './BookingList';
 import ViewingList from './ViewingList';
 import Tabs from './Tabs';
 
@@ -16,7 +16,6 @@ const ManagerView = ({ hostels, bookings, viewings, onUpdate }) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      console.log(token,API_BASE_URL)
       await axios.post(`${API_BASE_URL}/hostels`, newHostel, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -52,8 +51,8 @@ const ManagerView = ({ hostels, bookings, viewings, onUpdate }) => {
           Add Hostel
         </button>
       </header>
-      
-<Tabs 
+
+      <Tabs 
         tabs={managerTabs} 
         activeTab={activeTab} 
         onTabChange={setActiveTab} 
