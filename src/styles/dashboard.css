@@ -1,0 +1,435 @@
+.dashboard-container {
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.dashboard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 0 0 40px;
+  background: var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text-main);
+}
+
+.nav-user {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  padding: 15px 20px;
+}
+
+.user-info-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.role-badge {
+  background: var(--primary-light);
+  color: var(--primary-hover);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-left: 1px solid var(--border);
+  padding: 15px 24px;
+  border-radius: 0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.header-content h1 {
+  font-size: 32px;
+  color: var(--text-main);
+  margin: 0 0 8px 0;
+}
+
+.header-content p {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin: 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.card h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text-main);
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.status-active { background: var(--success-bg); color: var(--success); }
+.status-full { background: var(--error-bg); color: var(--error); }
+.status-pending { background: #fef3c7; color: #92400e; }
+.status-approved { background: #dcfce7; color: #166534; }
+.status-completed { background: #e0e7ff; color: #3730a3; }
+.status-assigned { background: var(--primary-light); color: var(--primary); }
+
+.card-content {
+  color: var(--text-muted);
+}
+
+.card-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.section-header {
+  margin: 40px 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header h2 {
+  font-size: 24px;
+  margin: 0;
+}
+.card h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text-main);
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.status-active { background: var(--success-bg); color: var(--success); }
+.status-full { background: var(--error-bg); color: var(--error); }
+.status-pending { background: #fef3c7; color: #92400e; }
+.status-approved { background: #dcfce7; color: #166534; }
+.status-completed { background: #e0e7ff; color: #3730a3; }
+.status-assigned { background: var(--primary-light); color: var(--primary); }
+
+.card-content {
+  color: var(--text-muted);
+}
+
+.card-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.section-header {
+  margin: 40px 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header h2 {
+  font-size: 24px;
+  margin: 0;
+}
+/* Table styles */
+.data-table-container {
+  background: var(--bg-card);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.data-table th {
+  background: #f8fafc;
+  padding: 15px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.assign-btn {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.assign-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+/* Modal styles */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  max-width: 500px;
+  width: 90%;
+}
+
+/* Student Hostel Card Specifics */
+.hostel-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hostel-info h3 {
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.hostel-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hostel-stats .stat-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.hostel-stats .stat-item svg {
+  color: var(--primary);
+}
+
+.card-actions {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+/* Search Bar Styles */
+.search-container {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.search-container .auth-input {
+  padding-left: 45px;
+}
+
+.search-container .input-icon {
+  left: 15px;
+  color: var(--text-muted);
+}
+/* Modal styles */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  max-width: 500px;
+  width: 90%;
+}
+
+/* Student Hostel Card Specifics */
+.hostel-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hostel-info h3 {
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.hostel-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hostel-stats .stat-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.hostel-stats .stat-item svg {
+  color: var(--primary);
+}
+
+.card-actions {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+/* Search Bar Styles */
+.search-container {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.search-container .auth-input {
+  padding-left: 45px;
+}
+
+.search-container .input-icon {
+  left: 15px;
+  color: var(--text-muted);
+}
