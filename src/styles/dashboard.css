@@ -9,7 +9,7 @@
   align-items: stretch;
   padding: 0 0 0 40px;
   background: var(--bg-card);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .nav-logo {
@@ -135,12 +135,30 @@
   display: inline-block;
 }
 
-.status-active { background: var(--success-bg); color: var(--success); }
-.status-full { background: var(--error-bg); color: var(--error); }
-.status-pending { background: #fef3c7; color: #92400e; }
-.status-approved { background: #dcfce7; color: #166534; }
-.status-completed { background: #e0e7ff; color: #3730a3; }
-.status-assigned { background: var(--primary-light); color: var(--primary); }
+.status-active {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.status-full {
+  background: var(--error-bg);
+  color: var(--error);
+}
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+.status-approved {
+  background: #dcfce7;
+  color: #166534;
+}
+.status-completed {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+.status-assigned {
+  background: var(--primary-light);
+  color: var(--primary);
+}
 
 .card-content {
   color: var(--text-muted);
@@ -197,12 +215,30 @@
   display: inline-block;
 }
 
-.status-active { background: var(--success-bg); color: var(--success); }
-.status-full { background: var(--error-bg); color: var(--error); }
-.status-pending { background: #fef3c7; color: #92400e; }
-.status-approved { background: #dcfce7; color: #166534; }
-.status-completed { background: #e0e7ff; color: #3730a3; }
-.status-assigned { background: var(--primary-light); color: var(--primary); }
+.status-active {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.status-full {
+  background: var(--error-bg);
+  color: var(--error);
+}
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+.status-approved {
+  background: #dcfce7;
+  color: #166534;
+}
+.status-completed {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+.status-assigned {
+  background: var(--primary-light);
+  color: var(--primary);
+}
 
 .card-content {
   color: var(--text-muted);
@@ -298,7 +334,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -308,6 +344,158 @@
 .modal-content {
   max-width: 500px;
   width: 90%;
+}
+
+.student-review-modal {
+  max-width: 680px;
+  width: 92%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.student-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.student-review-header h3 {
+  margin: 0;
+}
+
+.review-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+}
+
+.student-review-basic {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.student-review-basic p {
+  margin: 2px 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.student-review-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--text-muted);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rent-score-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.rent-score-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.student-metrics-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.metric-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.review-payments-list {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.review-payment-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 9px 10px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.review-payment-item:last-child {
+  border-bottom: none;
+}
+
+.student-review-assign-row {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.review-unit-input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
 }
 
 /* Student Hostel Card Specifics */
@@ -369,7 +557,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
