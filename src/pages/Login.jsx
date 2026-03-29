@@ -38,7 +38,7 @@ const Login = () => {
             <div className="auth-logo">
               <LogIn size={32} color="var(--primary)" />
             </div>
-            <h1>Welcome Back</h1>
+            <h1>Welcome Back to Hostel Hub</h1>
             <p>Login to manage your hostel bookings</p>
           </div>
 
