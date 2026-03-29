@@ -1,51 +1,56 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext } from "react";
+import axios from "axios";
+import { API_BASE_URL } from "../config/api";
+import useSessionManager from "../hooks/useSessionManager";
+import useSessionInterceptors from "../hooks/useSessionInterceptors";
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
-
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user, loading, saveSession, logout } = useSessionManager();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-    if (token && storedUser) {
-      setUser(JSON.parse(storedUser));
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    }
-    setLoading(false);
-  }, []);
+  useSessionInterceptors(logout);
 
   const login = async (email, password) => {
     try {
-      const { data } = await axios.post('http://localhost:5000/auth/login', { email, password });
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      setUser(data.user);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+      const { data } = await axios.post(`${API_BASE_URL}/auth/login`, {
+        email,
+        password,
+      });
+
+      const isSessionValid = saveSession(data.token, data.user);
+      if (!isSessionValid) {
+        return {
+          success: false,
+          error: "Session expired. Please login again.",
+        };
+      }
+
       return { success: true };
     } catch (err) {
-      return { success: false, error: err.response?.data?.error || 'Login failed' };
+      return {
+        success: false,
+        error: err.response?.data?.error || "Login failed",
+      };
     }
   };
 
-  const register = async (fullname, email, password, role) => {
+  const register = async (fullname, email, password, role, studentNumber = null) => {
     try {
-      await axios.post('http://localhost:5000/auth/register', { fullname, email, password, role });
+      await axios.post(`${API_BASE_URL}/auth/register`, {
+        fullname,
+        email,
+        password,
+        role,
+        student_number: studentNumber,
+      });
       return { success: true };
     } catch (err) {
-      return { success: false, error: err.response?.data?.error || 'Registration failed' };
+      return {
+        success: false,
+        error: err.response?.data?.error || "Registration failed",
+      };
     }
-  };
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setUser(null);
-    delete axios.defaults.headers.common['Authorization'];
   };
 
   return (
@@ -54,3 +59,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export default AuthContext;

@@ -1,0 +1,26 @@
+.placement-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.48rem 0.85rem;
+  background: var(--bg-card);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.placement-back-link:hover {
+  color: var(--text-main);
+  background: var(--bg-input);
+}
+
+.placement-card {
+  margin-top: 16px;
+}
+
+.placement-muted {
+  color: var(--text-muted);
+  margin: 0.5rem 0 0;
+}

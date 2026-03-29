@@ -1,0 +1,119 @@
+.landing-nav {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  background: color-mix(in srgb, var(--bg-card) 80%, transparent);
+}
+
+.landing-nav-inner {
+  width: min(1120px, 96%);
+  margin: 0 auto;
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.landing-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.landing-brand:hover {
+  color: var(--text-main);
+}
+
+.landing-brand-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.landing-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.landing-links a {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.landing-links a:hover {
+  color: var(--primary);
+}
+
+.landing-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.landing-cta {
+  border-radius: 999px;
+  padding: 0.42rem 0.8rem;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.landing-cta-primary {
+  color: #fff;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.landing-cta-primary:hover {
+  color: #fff;
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.landing-cta-ghost {
+  color: var(--text-secondary);
+  border-color: var(--border);
+  background: var(--bg-card);
+}
+
+.landing-cta-ghost:hover {
+  color: var(--text-main);
+  background: var(--bg-input);
+}
+
+@media (max-width: 860px) {
+  .landing-nav-inner {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+
+  .landing-links {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .landing-nav-inner {
+    min-height: 58px;
+  }
+
+  .landing-cta {
+    padding: 0.35rem 0.68rem;
+    font-size: 0.85rem;
+  }
+}
