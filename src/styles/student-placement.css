@@ -24,3 +24,204 @@
   color: var(--text-muted);
   margin: 0.5rem 0 0;
 }
+
+.payment-method-switch {
+  margin-top: 1rem;
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.payment-method-btn {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.88rem;
+}
+
+.payment-method-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.payment-form {
+  margin-top: 1.2rem;
+  max-width: 560px;
+}
+
+.payment-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.payment-feedback {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--success);
+  background: var(--success-bg);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.payment-feedback-error {
+  color: var(--error);
+  background: var(--error-bg);
+}
+
+.payment-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.52);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 1rem;
+}
+
+.payment-modal {
+  width: min(520px, 96vw);
+  background: var(--bg-card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 1.1rem;
+  box-shadow: 0 22px 48px rgba(2, 6, 23, 0.26);
+}
+
+.payment-modal-icon {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-modal-icon-waiting,
+.payment-modal-icon-processing {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.payment-modal-icon-approved {
+  color: var(--success);
+  background: var(--success-bg);
+}
+
+.payment-modal-icon-error {
+  color: var(--error);
+  background: var(--error-bg);
+}
+
+.payment-modal h3 {
+  margin: 0.8rem 0 0;
+}
+
+.payment-modal-description {
+  margin: 0.55rem 0 0;
+  color: var(--text-secondary);
+}
+
+.payment-modal-details {
+  margin-top: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.payment-modal-details div {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.payment-modal-details span {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.payment-modal-details strong {
+  color: var(--text-main);
+}
+
+.payment-modal-details small {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.payment-manager-label {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.payment-modal-close-btn {
+  margin-top: 1rem;
+}
+
+.payment-history-list {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.payment-history-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.payment-history-item h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.payment-history-item p {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.payment-history-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.payment-history-right strong {
+  color: var(--text-main);
+}
+
+.payment-history-right span,
+.payment-history-right small {
+  color: var(--text-muted);
+}
+
+@media (max-width: 760px) {
+  .payment-row {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-history-item {
+    flex-direction: column;
+  }
+
+  .payment-history-right {
+    text-align: left;
+  }
+}

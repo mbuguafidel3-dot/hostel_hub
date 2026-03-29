@@ -1,14 +1,14 @@
-import Database from 'better-sqlite3';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import Database from "better-sqlite3";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const db = new Database(path.join(__dirname, 'hostel.db'));
+const db = new Database(path.join(__dirname, "hostel.db"));
 
 // Enable foreign keys
-db.pragma('foreign_keys = ON');
+db.pragma("foreign_keys = ON");
 
 // Schema
 db.exec(`
@@ -74,19 +74,42 @@ db.exec(`
     FOREIGN KEY (hostel_id) REFERENCES hostels (id),
     FOREIGN KEY (student_id) REFERENCES users (id)
   );
+
+  CREATE TABLE IF NOT EXISTS payments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_id INTEGER NOT NULL,
+    hostel_id INTEGER NOT NULL,
+    booking_id INTEGER,
+    unit_number TEXT NOT NULL,
+    amount REAL NOT NULL,
+    method TEXT NOT NULL,
+    status TEXT DEFAULT 'completed',
+    reference TEXT NOT NULL UNIQUE,
+    paid_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES users (id),
+    FOREIGN KEY (hostel_id) REFERENCES hostels (id),
+    FOREIGN KEY (booking_id) REFERENCES bookings (id)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_payments_student_id ON payments (student_id);
+  CREATE INDEX IF NOT EXISTS idx_payments_hostel_id ON payments (hostel_id);
+  CREATE INDEX IF NOT EXISTS idx_payments_booking_id ON payments (booking_id);
 `);
 
 // Migration for existing bookings table
 try {
-  db.prepare('ALTER TABLE bookings ADD COLUMN notice_given INTEGER DEFAULT 0').run();
-  db.prepare('ALTER TABLE bookings ADD COLUMN notice_date DATETIME').run();
+  db.prepare(
+    "ALTER TABLE bookings ADD COLUMN notice_given INTEGER DEFAULT 0",
+  ).run();
+  db.prepare("ALTER TABLE bookings ADD COLUMN notice_date DATETIME").run();
 } catch (err) {
   // Columns might already exist
 }
 
 // Seed roles if they don't exist
-const roles = ['admin', 'manager', 'student'];
-const insertRole = db.prepare('INSERT OR IGNORE INTO roles (name) VALUES (?)');
+const roles = ["admin", "manager", "student"];
+const insertRole = db.prepare("INSERT OR IGNORE INTO roles (name) VALUES (?)");
 
 const seedRoles = db.transaction((roles) => {
   for (const role of roles) insertRole.run(role);
